@@ -1,1 +1,11 @@
 - In eventloop/timer.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+
+As part of the execution:
+1. foo(2) is called. Due to this 'foo' is logged.
+2. setTimeout puts bar(2) in the queue.
+3. baz() is called and 'baz' is logged.
+4. foo(1) is called. Due to this 'foo' is again logged.
+5. setTimeout puts bar(1) in the queue.
+6. baz() is called and 'baz' is logged.
+7. event pool polled causing first logged event to call logging '2 : bar'
+8. event pool polled causing second logged event to call logging '1 : bar'

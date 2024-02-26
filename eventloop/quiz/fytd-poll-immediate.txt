@@ -1,2 +1,9 @@
 - Explain the order of execution in terms of the event loop for eventloop/immediate.js.
+1. Async call to readfile happens, schedules it on event queue.
+2. setTimeout is scheduled on to the queue.
+3. setImmediate is scheduled on to the queue but with more priority than setTimeout.
+4. readFile finishes, prints error.
+5. immediate finishes to log
+6. timeout finishes to log
 - Will the order of execution change if timeout is changed to 0? Why or why not?
+1. No because immediate will still have precedence.
